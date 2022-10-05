@@ -33,9 +33,10 @@ def individual():
         print("23. Update Leader-Brateck")
         print("24. Download Newmagic")
         print("25. Download Streakwave")
-        print("26. Exit")
+        print("26. Download Hyka")
+        print("27. Exit")
 
-        subChoice=int(input("Enter your choice [1-26]:"))
+        subChoice=int(input("Enter your choice [1-27]:"))
 
         if subChoice==1:
             download_leader_m()
@@ -104,6 +105,9 @@ def individual():
             download_streakwave()
             update_streakwave()
         elif subChoice==26:
+            download_hyka()
+            update_hyka()
+        elif subChoice==27:
             subMenu = False
         else:
             print("Wrong Choice")

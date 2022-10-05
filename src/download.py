@@ -815,6 +815,31 @@ def download_newmagic():
         logger.critical(e)
         print(30*"-")
 
+def download_hyka():
+    print(30*"-")
+    logger.critical("HYKA TECHNOLOGIES")
+    print(30*"-")
+    print(30*"-")
+
+    feed = getenv.HYKA_FEED
+    try:
+        logger.warning("Trying to Download Hyka Feed")
+        print(30*"-")
+        r = requests.get(feed)
+        try:
+            os.remove(datafeedDir+'/hyka.csv')
+            logger.critical("Deleted previous datafeed")
+            print(30*"-")
+        except:
+            logger.debug("Previous datafeed doesn't exist - nothing to delete")
+            print(30*"-")
+        open(datafeedDir+'/hyka.csv', 'wb').write(r.content)
+        logger.debug("Successfully downloaded hyka to: " + datafeedDir)
+        print(30*"-")
+    except Exception as e:
+        logger.critical(e)
+        print(30*"-")
+
 def download():
    create_directory()
 
@@ -838,3 +863,4 @@ def download():
    download_auscomp()
    download_dynamicsupplies()
    download_newmagic()
+   download_hyka()

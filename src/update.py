@@ -673,6 +673,22 @@ def update_streakwave():
     except Exception as e:
         logger.critical(e)
 
+def update_hyka():
+    print("------------------------------")
+    logger.warning("HYKA: Updating Feed")
+
+    try:
+        feed = datafeedDir+'/hyka.csv'
+        df = pd.read_csv(feed, na_filter=False, encoding='unicode_escape')
+        
+        df.loc[df['Stock'] < 0, 'Stock'] = 0
+ 
+        df.to_csv(feed, index=False)
+        logger.debug("HYKA: Successfully Updated Feed")
+    except Exception as e:
+        logger.critical(e)
+    
+
 def update():
    update_auscomp()
    update_ingram()
@@ -690,9 +706,11 @@ def update():
    update_dynamicsupplies()
    update_newmagic()
    update_streakwave()
+   update_hyka()
    update_leader_yealink()
    update_leader_plantronics()
    update_leader_brateck()
    update_anixter()
    update_thermaltake()
+   update_hyka()
    
