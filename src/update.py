@@ -687,6 +687,22 @@ def update_hyka():
         logger.debug("HYKA: Successfully Updated Feed")
     except Exception as e:
         logger.critical(e)
+
+def update_seltec():
+    print("------------------------------")
+    logger.warning("SELTEC: Updating Feed")
+
+    try:
+        feed = datafeedDir+'/seltec.csv'
+        df = pd.read_csv(feed, na_filter=False, encoding='unicode_escape')
+        
+        df['Stock on Hand'] = df['Stock on Hand'].astype(int)
+        df.loc[df['Stock on Hand'] < 0, 'Stock on Hand'] = 0
+ 
+        df.to_csv(feed, index=False)
+        logger.debug("SELTEC: Successfully Updated Feed")
+    except Exception as e:
+        logger.critical(e)
     
 
 def update():
@@ -707,10 +723,11 @@ def update():
    update_newmagic()
    update_streakwave()
    update_hyka()
+   update_seltec()
    update_leader_yealink()
    update_leader_plantronics()
    update_leader_brateck()
    update_anixter()
    update_thermaltake()
-   update_hyka()
+   
    

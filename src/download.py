@@ -840,6 +840,51 @@ def download_hyka():
         logger.critical(e)
         print(30*"-")
 
+def download_seltec():
+    print(30*"-")
+    logger.critical("SELTEC")
+    print(30*"-")
+    print(30*"-")
+
+    host = getenv.EMAIL_HOST
+    username = getenv.EMAIL_USERNAME
+    password = getenv.EMAIL_PASSWORD
+    
+    now = datetime.datetime.now()
+
+    today = datetime.date.today()
+    first = today.replace(day=1)
+    lastMonth = first - datetime.timedelta(days=1)
+
+    if(now.day == 1):
+        day = int(lastMonth.strftime("%d"))
+        month = int(lastMonth.strftime("%m"))
+    else:
+        day = now.day
+        month = now.month
+
+    query = A(subject='*SELTEC DAILY DATA FEED*', date_gte=datetime.date(now.year, month, day))
+    with MailBox(host).login(username, password, 'Inbox') as mailbox:
+        logger.warning("Logged in")
+        for msg in mailbox.fetch(query):
+            for att in msg.attachments:
+                try:
+                    logger.warning("Trying to Download Seltec Feed - "+msg.date_str)
+                    print(30*"-")
+                    try:
+                        os.remove(datafeedDir+'/seltec.csv')
+                        logger.critical("Deleted previous datafeed")
+                        print(30*"-")
+                    except:
+                        logger.debug("Previous datafeed doesn't exist - nothing to delete")
+                        print(30*"-")
+                    open(datafeedDir+'/seltec.csv', 'wb').write(att.payload)
+                    logger.debug("Successfully downloaded Seltec to: " + datafeedDir)
+                    print(30*"-")
+                except Exception as e:
+                    logger.critical(e)
+                    print(30*"-")
+
 def download():
    create_directory()
 
@@ -864,3 +909,4 @@ def download():
    download_dynamicsupplies()
    download_newmagic()
    download_hyka()
+   download_seltec()
