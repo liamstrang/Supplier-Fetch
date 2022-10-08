@@ -863,7 +863,7 @@ def download_seltec():
         day = now.day
         month = now.month
 
-    query = A(subject='*SELTEC DAILY DATA FEED*', date_gte=datetime.date(now.year, month, day))
+    query = A(subject='*SELTEC DAILY DATA FEED*', date_gte=datetime.date(now.year, month, day-1))
     with MailBox(host).login(username, password, 'Inbox') as mailbox:
         logger.warning("Logged in")
         for msg in mailbox.fetch(query):

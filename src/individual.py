@@ -110,7 +110,6 @@ def individual():
             update_hyka()
         elif subChoice==27:
             download_seltec()
-            update_seltec()
         elif subChoice==28:
             subMenu = False
         else:
