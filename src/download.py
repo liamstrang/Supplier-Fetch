@@ -494,6 +494,7 @@ def download_dicker():
         logger.critical(e)
         print(30*"-")
 
+"""
 def download_synnex():
     print(30*"-")
     logger.critical("SYNNEX")
@@ -541,7 +542,7 @@ def download_synnex():
                 except Exception as e:
                     logger.critical(e)
                     print(30*"-")
-
+"""
 def download_ingram():
     print(30*"-")
     logger.critical("INGRAM MICRO")
@@ -672,6 +673,49 @@ def download_auscomp():
         print(30*"-")
         
         logger.debug("Successfully downloaded Auscomp to: " + datafeedDir)
+        print(30*"-")
+    except Exception as e:
+        logger.critical(e)
+        print(30*"-")
+    
+    ftp.quit()
+
+def download_synnex():
+    print(30*"-")
+    logger.critical("SYNNEX")
+    print(30*"-")
+    print(30*"-")
+
+    feed = getenv.SYNNEX_HOST
+    port = int(getenv.SYNNEX_PORT)
+    filename = getenv.SYNNEX_FILENAME
+
+    ftp = ftplib.FTP()
+    ftp.connect(feed, port) 
+    ftp.login(getenv.SYNNEX_USER, getenv.SYNNEX_PASS) 
+    ftp.cwd('/')
+    
+    try:
+        logger.warning("Trying to Download Synnex Feed")
+        print(30*"-")
+        try:
+            os.remove(datafeedDir+'/synnex.csv')
+            logger.critical("Deleted previous datafeed")
+            print(30*"-")
+        except:
+            logger.debug("Previous datafeed doesn't exist - nothing to delete")
+            print(30*"-")
+            
+        ftp.retrbinary("RETR " + filename, open(datafeedDir+'/synnex.csv', 'wb').write)
+        
+        timestamp = ftp.voidcmd("MDTM /"+filename)[4:].strip()
+        time = parser.parse(timestamp).strftime("%d-%m-%Y %H:%M:%S")               
+        logger.debug("Fetched Synnex Feed: " + time)
+        dataframe = pd.read_csv(datafeedDir+'/synnex.csv',delimiter="\t")
+        dataframe.to_csv(datafeedDir+'/synnex.csv', encoding='utf-8', index=False)
+        print(30*"-")
+        
+        logger.debug("Successfully downloaded Synnex to: " + datafeedDir)
         print(30*"-")
     except Exception as e:
         logger.critical(e)

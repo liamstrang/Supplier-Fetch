@@ -323,6 +323,21 @@ def update_synnex():
         df['MOQ'] = pd.to_numeric(df['MOQ'], errors='coerce')
         df = df[df['MOQ'] == 1]
 
+        df = df.drop('LONG_DESCRIPTION', axis=1)
+        df = df.drop('NOTES_COMMENTS', axis=1)
+        df = df.drop('CATEGORY_OF_PRODUCT_1', axis=1)
+        df = df.drop('CATEGORY_OF_PRODUCT_2', axis=1)
+        df = df.drop('CATEGORY_OF_PRODUCT_3', axis=1)
+        df = df.drop('GOV_BUY_EX', axis=1)
+        df = df.drop('GOV_RETAIL_EX', axis=1)
+        df = df.drop('URL', axis=1)
+        df = df.drop('Image1URL', axis=1)
+        df = df.drop('Image2URL', axis=1)
+        df = df.drop('Image3URL', axis=1)
+        df = df.drop('Image4URL', axis=1)
+        df = df.drop('Image5URL', axis=1)
+        df = df.drop('TECHNICAL_SPECIFICATIONS', axis=1)
+
         df.loc[df['AVAILABILITY_M'] == 'B', 'AVAILABILITY_M'] = 0
         df.loc[df['AVAILABILITY_S'] == 'B', 'AVAILABILITY_S'] = 0
 
@@ -338,8 +353,8 @@ def update_synnex():
 
         df.to_csv(feed, index=False)
         logger.debug("SYNNEX: Successfully Updated Feed")
-    except:
-        logger.critical("SYNNEX: Error Updating Feed - Please do it manually")
+    except Exception as e:
+        logger.critical(e)
     
 def update_ingram():
     print("------------------------------")
