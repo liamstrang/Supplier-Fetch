@@ -362,13 +362,12 @@ def update_ingram():
     
     try:
         feed = datafeedDir+"/ingram.csv"
-        df = pd.read_csv(feed, na_filter=False, encoding='unicode_escape')
+        df = pd.read_csv(feed, na_filter=False)
 
+        df['Customer Price'] = df['Customer Price'].replace(' ', '', regex=True)
         df['Customer Price'] = pd.to_numeric(df['Customer Price'], errors='coerce')
         df['Available Quantity'] = df['Available Quantity'].replace('-', '', regex=True)
         df['Available Quantity'] = df['Available Quantity'].astype(int)
-
-        df = df[~df['Creation Reason Type'].str.contains('BUNDLE')]
 
         df.to_csv(feed, index=False)
         logger.debug("INGRAM: Successfully Updated Feed")
