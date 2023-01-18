@@ -412,7 +412,7 @@ def update_auscomp():
         df['Rocklea'] = 0
         df['Sydney'] = 0
 
-
+        df['Price'] = df.Price.str.replace(r'\,', '', regex=True)
  
         df.to_csv(feed, index=False)
         logger.debug("AUSCOMP: Successfully Updated Feed")
