@@ -639,7 +639,8 @@ def download_moki():
                 except Exception as e:
                     logger.critical(e)
                     print(30*"-")
-    
+
+"""
 def download_auscomp():
     print(30*"-")
     logger.critical("AUSCOMP COMPUTERS")
@@ -679,6 +680,34 @@ def download_auscomp():
         print(30*"-")
     
     ftp.quit()
+"""
+
+def download_auscomp():
+    print(30*"-")
+    logger.critical("AUSCOMP")
+    print(30*"-")
+    print(30*"-")
+
+    feed = getenv.AUSCOMP_FEED_URL
+    try:
+        logger.warning("Trying to Download Auscomp Feed")
+        print(30*"-")
+        r = requests.get(feed)
+        try:
+            os.remove(datafeedDir+'/auscomp.csv')
+            logger.critical("Deleted previous datafeed")
+            print(30*"-")
+        except:
+            logger.debug("Previous datafeed doesn't exist - nothing to delete")
+            print(30*"-")
+        open(datafeedDir+'/auscomp.csv', 'wb').write(r.content)
+        logger.debug("Successfully downloaded Auscomp to: " + datafeedDir)
+        print(30*"-")
+    except Exception as e:
+        logger.critical(e)
+        print(30*"-")
+
+
 
 def download_synnex():
     print(30*"-")

@@ -374,6 +374,7 @@ def update_ingram():
     except Exception as e:
         logger.critical(e)
 
+'''
 def update_auscomp():
     print("------------------------------")
     logger.warning("AUSCOMP: Updating Feed")
@@ -395,6 +396,31 @@ def update_auscomp():
         logger.debug("AUSCOMP: Successfully Updated Feed")
     except:
         logger.critical("AUSCOMP: Error Updating Feed - Please do it manually")
+'''
+
+def update_auscomp():
+    print("------------------------------")
+    logger.warning("AUSCOMP: Updating Feed")
+
+    try:
+        feed = datafeedDir+'/auscomp.csv'
+        df = pd.read_csv(feed, na_filter=False, encoding='unicode_escape')
+
+        df['AvailableQty'] = df.AvailableQty.str.replace(r'\+', '', regex=True)
+        df['AvailableQty'] = df['AvailableQty'].astype(int)
+
+        df['Rocklea'] = 0
+        df['Sydney'] = 0
+
+        df['Price'] = pd.to_numeric(df['Price'], errors='coerce')
+
+        df = df[df['Price'] > 0]
+ 
+        df.to_csv(feed, index=False)
+        logger.debug("AUSCOMP: Successfully Updated Feed")
+    except:
+        logger.critical("AUSCOMP: Error Updating Feed - Please do it manually")
+
 
 def update_thermaltake():
     print("------------------------------")
