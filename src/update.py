@@ -412,9 +412,7 @@ def update_auscomp():
         df['Rocklea'] = 0
         df['Sydney'] = 0
 
-        df['Price'] = pd.to_numeric(df['Price'], errors='coerce')
 
-        df = df[df['Price'] > 0]
  
         df.to_csv(feed, index=False)
         logger.debug("AUSCOMP: Successfully Updated Feed")
