@@ -27,12 +27,13 @@ def main():
       print("3. Create Missing Products Feed")
       print("-"*30)
       print("4. Update All Missing Products")
+      print("5. Update All Missing Products - WITH GTIN")
       print("-"*30)
-      print("5. Update All Missing Products (WITHOUT DOWNLOADING)")
+      print("6. Update All Missing Products (WITHOUT DOWNLOADING)")
       print("-"*30)
-      print("6. Exit")
+      print("7. Exit")
       print(79*"-")
-      choice=int(input("Enter your choice [1-5]:"))
+      choice=int(input("Enter your choice [1-7]:"))
 
       if choice==1:
          print("Downloading ALL Feeds")
@@ -68,6 +69,19 @@ def main():
             subChoice=input("Do you want to keep or remove special characters? (Y/N): ")
             if (subChoice == 'N' or subChoice == 'n'):
                print("Not removing special characters")
+               update_all_missing_gtin(False)
+               subMenu = False
+            else:
+               print("Removing special characters")
+               update_all_missing_gtin(True)
+               subMenu = False
+
+      elif choice==6:
+         subMenu = True
+         while subMenu:
+            subChoice=input("Do you want to keep or remove special characters? (Y/N): ")
+            if (subChoice == 'N' or subChoice == 'n'):
+               print("Not removing special characters")
                nodownload_update(False)
                subMenu = False
             else:
@@ -75,7 +89,7 @@ def main():
                nodownload_update(True)
                subMenu = False
 
-      elif choice==6:
+      elif choice==7:
          menu = False
       else:
          print("Wrong Choice")
