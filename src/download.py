@@ -720,6 +720,7 @@ def download_synnex():
     filename = getenv.SYNNEX_FILENAME
 
     ftp = ftplib.FTP()
+    ftp.set_pasv(False)
     ftp.connect(feed, port) 
     ftp.login(getenv.SYNNEX_USER, getenv.SYNNEX_PASS) 
     ftp.cwd('/')
