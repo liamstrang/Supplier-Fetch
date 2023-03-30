@@ -65,6 +65,7 @@ HYKA_FEED = os.getenv('HYKA_FEED')
 #BCM LOGIN
 BCM_USERNAME = os.getenv('BCM_USERNAME')
 BCM_PASSWORD = os.getenv('BCM_PASSWORD')
+BCM_URL = os.getenv('BCM_URL')
 
 #EMAIL LOGIN
 EMAIL_HOST = os.getenv('EMAIL_HOST')
