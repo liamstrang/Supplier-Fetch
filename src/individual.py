@@ -8,7 +8,7 @@ def individual():
         print(10*"-")
         print("SELECT SUPPLIER TO DOWNLOAD")
         print(10*"-")
-        print("1. Download Leader-Mwave")
+        print("1. Download Leader-M")
         print("2. Download Leader")
         print("3. Download Compuworld")
         print("4. Download Bluechip")
