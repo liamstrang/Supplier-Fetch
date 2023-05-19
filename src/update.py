@@ -141,14 +141,15 @@ def update_compuworld():
         feed = datafeedDir+"/compuworld.csv"
         df = pd.read_csv(feed, na_filter=False, encoding = 'unicode_escape')
 
+        df['Stock Qty'] = df['Stock Qty'].replace('', 0)
         df['Stock Qty'] = pd.to_numeric(df['Stock Qty'], errors='coerce')
         df['Stock Qty'] = df['Stock Qty'].astype(int)
         df.loc[df['Stock Qty'] < 0, 'Stock Qty'] = 0
 
         df.to_csv(feed, index=False)
         logger.debug("COMPUWORLD: Successfully Updated Feed")
-    except:
-        logger.critical("COMPUWORLD: Error Updating Feed - Please do it manually")
+    except Exception as e:
+        logger.critical(e)
 
 def update_bluechip():
     print("------------------------------")
