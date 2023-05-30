@@ -208,7 +208,7 @@ def update_all_missing(removeSpecial):
             df["Supplier"] = supplier
 
             if removeSpecial:
-                df['Product Code/SKU'] = df['Product Code/SKU'].str.replace(r'[^a-zA-Z0-9 +]', '')
+                df['Product Code/SKU'] = df['Product Code/SKU'].str.replace(r'[^a-zA-Z0-9]', '')
                 df['Product Code/SKU'] = df['Product Code/SKU'].str.replace(r' ', '')
 
             df['Product Code/SKU'].replace('', np.nan, inplace=True)
