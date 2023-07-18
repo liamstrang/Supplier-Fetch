@@ -604,10 +604,14 @@ def update_leader_cygnett():
         
         df.replace(to_replace=[r"\\t|\\n|\\r", "\t|\n|\r"], value=["",""], regex=True, inplace=True)
 
+        df['Cost'] = pd.to_numeric(df['Cost'], errors='coerce')
+        df['Cost'] = df['Cost'] / 1.3
+        df['Cost'] = df['Cost'].astype(int)
+
         df.to_csv(feed, index=False)
         logger.debug("LEADER-CYGNETT: Successfully Updated Feed")
     except Exception as e:
-        logger.critical("LEADER-CYGNETT: Error Updating Feed - Please do it manually")
+        logger.critical(e)
 
 def update_leader_brateck():
     print("------------------------------")
