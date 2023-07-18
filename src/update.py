@@ -554,6 +554,61 @@ def update_leader_plantronics():
     except Exception as e:
         logger.critical("LEADER-PLANTRONICS: Error Updating Feed - Please do it manually")
 
+def update_leader_cygnett():
+    print("------------------------------")
+    logger.warning("LEADER-CYGNETT: Updating Feed")
+
+    try:
+        feed = datafeedDir+'/leader-cygnett.csv'
+        df = pd.read_csv(feed, na_filter=False, encoding='unicode_escape')
+
+        df.drop(df.columns[0], axis=1, inplace=True)
+        df.drop(df.columns[0], axis=1, inplace=True)
+        df.drop(df.columns[1], axis=1, inplace=True)
+        
+        df['Cost'] = df.Cost.str.replace(r',', '', regex=True)
+        df['Cost'] = df.Cost.str.replace(r'\$', '', regex=True)
+        
+        df['Syd'] = df.Syd.str.replace(r'^(([0-9])|([0-2][0-9])|([3][0-1]))(nd|st|rd|th)\ (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\ \d{2}$', '0', regex=True)
+        df['Ade'] = df.Ade.str.replace(r'^(([0-9])|([0-2][0-9])|([3][0-1]))(nd|st|rd|th)\ (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\ \d{2}$', '0', regex=True)
+        df['Bris'] = df.Bris.str.replace(r'^(([0-9])|([0-2][0-9])|([3][0-1]))(nd|st|rd|th)\ (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\ \d{2}$', '0', regex=True)
+        df['Melb'] = df.Melb.str.replace(r'^(([0-9])|([0-2][0-9])|([3][0-1]))(nd|st|rd|th)\ (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\ \d{2}$', '0', regex=True)
+        df['Perth'] = df.Perth.str.replace(r'^(([0-9])|([0-2][0-9])|([3][0-1]))(nd|st|rd|th)\ (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\ \d{2}$', '0', regex=True)
+
+        df['Syd'] = df.Syd.str.replace(r'10\+', '15', regex=True)
+        df['Ade'] = df.Ade.str.replace(r'10\+', '15', regex=True)
+        df['Bris'] = df.Bris.str.replace(r'10\+', '15', regex=True)
+        df['Melb'] = df.Melb.str.replace(r'10\+', '15', regex=True)
+        df['Perth'] = df.Perth.str.replace(r'10\+', '15', regex=True)
+
+        df['Syd'] = df.Syd.str.replace(r'null', '', regex=True)
+        df['Ade'] = df.Ade.str.replace(r'null', '', regex=True)
+        df['Bris'] = df.Bris.str.replace(r'null', '', regex=True)
+        df['Melb'] = df.Melb.str.replace(r'null', '', regex=True)
+        df['Perth'] = df.Perth.str.replace(r'null', '', regex=True)
+        df['Cost'] = df.Cost.str.replace(r'null', '999', regex=True)
+
+        df.replace('', 0, inplace=True)
+
+        df['Syd'] = pd.to_numeric(df['Syd'], errors='coerce')
+        df['Ade'] = pd.to_numeric(df['Ade'], errors='coerce')
+        df['Bris'] = pd.to_numeric(df['Bris'], errors='coerce')
+        df['Melb'] = pd.to_numeric(df['Melb'], errors='coerce')
+        df['Perth'] = pd.to_numeric(df['Perth'], errors='coerce')
+
+
+        df['Syd'] = df.loc[:,['Syd','Ade', 'Bris', 'Melb', 'Perth']].sum(axis=1)
+
+        df[['ProductLink','SKU']] = df['ProductLink'].str.split('              Man. sku: ',expand=True)
+        df = df[['ProductLink', 'SKU', 'Cost', 'Syd', 'Ade', 'Bris', 'Melb', 'Perth']]
+        
+        df.replace(to_replace=[r"\\t|\\n|\\r", "\t|\n|\r"], value=["",""], regex=True, inplace=True)
+
+        df.to_csv(feed, index=False)
+        logger.debug("LEADER-CYGNETT: Successfully Updated Feed")
+    except Exception as e:
+        logger.critical("LEADER-CYGNETT: Error Updating Feed - Please do it manually")
+
 def update_leader_brateck():
     print("------------------------------")
     logger.warning("LEADER-BRATECK: Updating Feed")
@@ -748,6 +803,7 @@ def update():
    update_hyka()
    update_leader_yealink()
    update_leader_plantronics()
+   update_leader_cygnett()
    update_leader_brateck()
    update_anixter()
    update_thermaltake()
