@@ -972,7 +972,6 @@ def download():
    download_ijk()
    download_force()
    download_4cabling()
-   download_alloy()
    download_alloys()
    download_dicker()
    download_synnex()
