@@ -134,7 +134,6 @@ def download_all_missing(folder):
         getenv.BCM_URL + "AusPC/supplier-missing-product-export.php?id=111",
         getenv.BCM_URL + "AusPC/supplier-missing-product-export.php?id=102",
         getenv.BCM_URL + "AusPC/supplier-missing-product-export.php?id=98",
-        getenv.BCM_URL + "AusPC/supplier-missing-product-export.php?id=125",
         getenv.BCM_URL + "AusPC/supplier-missing-product-export.php?id=126",
         getenv.BCM_URL + "AusPC/supplier-missing-product-export.php?id=128",
         getenv.BCM_URL + "AusPC/supplier-missing-product-export.php?id=129",
@@ -143,7 +142,8 @@ def download_all_missing(folder):
         getenv.BCM_URL + "AusPC/supplier-missing-product-export.php?id=132",
         getenv.BCM_URL + "AusPC/supplier-missing-product-export.php?id=134",
         getenv.BCM_URL + "AusPC/supplier-missing-product-export.php?id=135",
-        getenv.BCM_URL + "AusPC/supplier-missing-product-export.php?id=136"
+        getenv.BCM_URL + "AusPC/supplier-missing-product-export.php?id=136",
+        getenv.BCM_URL + "AusPC/supplier-missing-product-export.php?id=137"
     ]
 
     try:
@@ -207,7 +207,7 @@ def update_all_missing(removeSpecial):
             df["Missing Supplier Code"] = newSKU
             df["Supplier"] = supplier
 
-            if removeSpecial:
+            if removeSpecial == True:
                 df['Product Code/SKU'] = df['Product Code/SKU'].str.replace(r'[^a-zA-Z0-9]', '')
                 df['Product Code/SKU'] = df['Product Code/SKU'].str.replace(r' ', '')
 
