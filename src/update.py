@@ -471,6 +471,12 @@ def update_leader_yealink():
         df['Melb'] = df.Melb.str.replace(r'10\+', '15', regex=True)
         df['Perth'] = df.Perth.str.replace(r'10\+', '15', regex=True)
 
+        df['Syd'] = df.Syd.str.replace(r'20\+', '15', regex=True)
+        df['Ade'] = df.Ade.str.replace(r'20\+', '15', regex=True)
+        df['Bris'] = df.Bris.str.replace(r'20\+', '15', regex=True)
+        df['Melb'] = df.Melb.str.replace(r'20\+', '15', regex=True)
+        df['Perth'] = df.Perth.str.replace(r'20\+', '15', regex=True)
+
         df['Syd'] = df.Syd.str.replace(r'null', '', regex=True)
         df['Ade'] = df.Ade.str.replace(r'null', '', regex=True)
         df['Bris'] = df.Bris.str.replace(r'null', '', regex=True)
@@ -526,6 +532,12 @@ def update_leader_plantronics():
         df['Melb'] = df.Melb.str.replace(r'10\+', '15', regex=True)
         df['Perth'] = df.Perth.str.replace(r'10\+', '15', regex=True)
 
+        df['Syd'] = df.Syd.str.replace(r'20\+', '15', regex=True)
+        df['Ade'] = df.Ade.str.replace(r'20\+', '15', regex=True)
+        df['Bris'] = df.Bris.str.replace(r'20\+', '15', regex=True)
+        df['Melb'] = df.Melb.str.replace(r'20\+', '15', regex=True)
+        df['Perth'] = df.Perth.str.replace(r'20\+', '15', regex=True)
+
         df['Syd'] = df.Syd.str.replace(r'null', '', regex=True)
         df['Ade'] = df.Ade.str.replace(r'null', '', regex=True)
         df['Bris'] = df.Bris.str.replace(r'null', '', regex=True)
@@ -580,6 +592,12 @@ def update_leader_cygnett():
         df['Bris'] = df.Bris.str.replace(r'10\+', '15', regex=True)
         df['Melb'] = df.Melb.str.replace(r'10\+', '15', regex=True)
         df['Perth'] = df.Perth.str.replace(r'10\+', '15', regex=True)
+
+        df['Syd'] = df.Syd.str.replace(r'20\+', '15', regex=True)
+        df['Ade'] = df.Ade.str.replace(r'20\+', '15', regex=True)
+        df['Bris'] = df.Bris.str.replace(r'20\+', '15', regex=True)
+        df['Melb'] = df.Melb.str.replace(r'20\+', '15', regex=True)
+        df['Perth'] = df.Perth.str.replace(r'20\+', '15', regex=True)
 
         df['Syd'] = df.Syd.str.replace(r'null', '', regex=True)
         df['Ade'] = df.Ade.str.replace(r'null', '', regex=True)
@@ -639,6 +657,12 @@ def update_leader_brateck():
         df['Bris'] = df.Bris.str.replace(r'10\+', '15', regex=True)
         df['Melb'] = df.Melb.str.replace(r'10\+', '15', regex=True)
         df['Perth'] = df.Perth.str.replace(r'10\+', '15', regex=True)
+
+        df['Syd'] = df.Syd.str.replace(r'20\+', '15', regex=True)
+        df['Ade'] = df.Ade.str.replace(r'20\+', '15', regex=True)
+        df['Bris'] = df.Bris.str.replace(r'20\+', '15', regex=True)
+        df['Melb'] = df.Melb.str.replace(r'20\+', '15', regex=True)
+        df['Perth'] = df.Perth.str.replace(r'20\+', '15', regex=True)
 
         df['Syd'] = df.Syd.str.replace(r'null', '', regex=True)
         df['Ade'] = df.Ade.str.replace(r'null', '', regex=True)
