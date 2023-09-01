@@ -27,6 +27,12 @@ def update_leader():
         df.loc[df['AV'] == ">5", 'AV'] = 15
         df.loc[df['AW'] == ">5", 'AW'] = 15
 
+        df.loc[df['AA'] == ">20", 'AA'] = 30
+        df.loc[df['AQ'] == ">20", 'AQ'] = 30
+        df.loc[df['AN'] == ">20", 'AN'] = 30
+        df.loc[df['AV'] == ">20", 'AV'] = 30
+        df.loc[df['AW'] == ">20", 'AW'] = 30
+
         df.loc[df['AA'] == ">100", 'AA'] = 100
         df.loc[df['AQ'] == ">100", 'AQ'] = 100
         df.loc[df['AN'] == ">100", 'AN'] = 100
@@ -97,6 +103,12 @@ def update_leader_m():
         df.loc[df['AN'] == ">5", 'AN'] = 15
         df.loc[df['AV'] == ">5", 'AV'] = 15
         df.loc[df['AW'] == ">5", 'AW'] = 15
+
+        df.loc[df['AA'] == ">20", 'AA'] = 30
+        df.loc[df['AQ'] == ">20", 'AQ'] = 30
+        df.loc[df['AN'] == ">20", 'AN'] = 30
+        df.loc[df['AV'] == ">20", 'AV'] = 30
+        df.loc[df['AW'] == ">20", 'AW'] = 30
 
         df.loc[df['AA'] == ">100", 'AA'] = 100
         df.loc[df['AQ'] == ">100", 'AQ'] = 100
