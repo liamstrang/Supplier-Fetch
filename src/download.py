@@ -490,6 +490,17 @@ def download_dicker():
         open(datafeedDir+'/dicker.csv', 'wb').write(r.content)
         logger.debug("Successfully downloaded Dicker to: " + datafeedDir)
         print(30*"-")
+
+        # Remove problematic lines from the file
+        with open(datafeedDir+'/dicker.csv', 'r') as file:
+            lines = file.readlines()
+        with open(datafeedDir+'/dicker_temp.csv', 'w') as file:
+            for line in lines:
+                if '63B2MAR6AU-DASHCAM,1' not in line:
+                    file.write(line)
+        os.remove(datafeedDir+'/dicker.csv')
+        os.rename(datafeedDir+'/dicker_temp.csv', datafeedDir+'/dicker.csv')
+
     except Exception as e:
         logger.critical(e)
         print(30*"-")
