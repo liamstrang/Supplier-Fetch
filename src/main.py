@@ -21,7 +21,7 @@ TODO:
 def main():
    menu = True
    while menu:
-      print(20*"-","AusPCMarket - Automated Feed Download - Version 1.5",20*"-")
+      print(20*"-","AusPCMarket - Automated Feed Download - Version 1.6",20*"-")
       print("1. Download ALL Feeds")
       print("2. Download Specific Feed")
       print("3. Create Missing Products Feed")
