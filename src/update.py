@@ -336,21 +336,6 @@ def update_synnex():
         df['MOQ'] = pd.to_numeric(df['MOQ'], errors='coerce')
         df = df[df['MOQ'] == 1]
 
-        df = df.drop('LONG_DESCRIPTION', axis=1)
-        df = df.drop('NOTES_COMMENTS', axis=1)
-        df = df.drop('CATEGORY_OF_PRODUCT_1', axis=1)
-        df = df.drop('CATEGORY_OF_PRODUCT_2', axis=1)
-        df = df.drop('CATEGORY_OF_PRODUCT_3', axis=1)
-        df = df.drop('GOV_BUY_EX', axis=1)
-        df = df.drop('GOV_RETAIL_EX', axis=1)
-        df = df.drop('URL', axis=1)
-        df = df.drop('Image1URL', axis=1)
-        df = df.drop('Image2URL', axis=1)
-        df = df.drop('Image3URL', axis=1)
-        df = df.drop('Image4URL', axis=1)
-        df = df.drop('Image5URL', axis=1)
-        df = df.drop('TECHNICAL_SPECIFICATIONS', axis=1)
-
         df.loc[df['AVAILABILITY_M'] == 'B', 'AVAILABILITY_M'] = 0
         df.loc[df['AVAILABILITY_S'] == 'B', 'AVAILABILITY_S'] = 0
 
@@ -360,6 +345,10 @@ def update_synnex():
         
         df['AVAILABILITY_S'] = df['AVAILABILITY_S'].astype(int)
         df['AVAILABILITY_M'] = df['AVAILABILITY_M'].astype(int)
+
+        df['UPC'] = pd.to_numeric(df['UPC'], errors='coerce').astype('Int64')
+        df['EAN'] = pd.to_numeric(df['EAN'], errors='coerce').astype('Int64')
+        df['APN'] = pd.to_numeric(df['APN'], errors='coerce').astype('Int64')
 
         df.loc[df["UPC"] == '','UPC'] = df["EAN"]
         df.loc[df["UPC"] == '','UPC'] = df["APN"]

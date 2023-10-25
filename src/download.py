@@ -505,7 +505,7 @@ def download_dicker():
         logger.critical(e)
         print(30*"-")
 
-"""
+
 def download_synnex():
     print(30*"-")
     logger.critical("SYNNEX")
@@ -553,7 +553,7 @@ def download_synnex():
                 except Exception as e:
                     logger.critical(e)
                     print(30*"-")
-"""
+
 def download_ingram():
     print(30*"-")
     logger.critical("INGRAM MICRO")
@@ -719,7 +719,7 @@ def download_auscomp():
         print(30*"-")
 
 
-
+"""
 def download_synnex():
     print(30*"-")
     logger.critical("SYNNEX")
@@ -763,6 +763,7 @@ def download_synnex():
         print(30*"-")
     
     ftp.quit()
+"""
 
 def download_dynamicsupplies():
     print(30*"-")
