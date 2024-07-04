@@ -9,14 +9,7 @@ coloredlogs.install(level='DEBUG', logger=logger)
 
 today = time.strftime("%d%m%Y")
 downloadDir = str(Path.home() / "Downloads")
-datafeedDir = downloadDir+'/'+today
-
-'''
-TODO:
-* ADD AUTOMATIC AUSPC FEED UPDATE
-* UPLOAD AUSPC FEED TO SFTP
-* ADD MIA DISTRIBUTION TO DOWNLOAD AND UPDATE
-'''
+datafeedDir = downloadDir+'/'+todayo
 
 def main():
    menu = True
